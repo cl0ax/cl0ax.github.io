@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Abraham Hernandez // Software Engineer</title>
+  <meta name="description" content="Software engineer. Java tooling, web applications, and a shipped client site. Portfolio of work with source you can read.">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip" href="#projects">Skip to projects</a>
+
+  <header class="site-header">
+    <nav class="site-nav" aria-label="Primary">
+      <a href="#projects">Projects</a>
+      <a href="https://github.com/cl0ax">GitHub</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- Hero. The canvas is decorative only, so it is aria-hidden and sits
+         behind the text with pointer-events disabled. -->
+    <header class="hero">
+      <canvas class="hero__canvas" aria-hidden="true"></canvas>
+      <div class="hero__content">
+        <p class="hero__name">Abraham Hernandez</p>
+        <h1 class="hero__tagline">Software Engineer</h1>
+        <p class="hero__bio">
+          I build developer tooling in Java and ship web applications with plain
+          HTML, CSS, and JavaScript. My work runs from a local execution
+          visualizer that traces real Java programs to a landscaping company's
+          site that is live and taking calls.
+        </p>
+        <p class="hero__cta">
+          Looking for a new grad or entry level software role. Everything below
+          is work I can walk you through.
+        </p>
+        <p class="hero__links">
+          <span class="hero__label">github:</span>
+          <a href="https://github.com/cl0ax">@cl0ax</a>
+        </p>
+        <p class="hero__links">
+          <span class="hero__label">email:</span>
+          <!-- Written obfuscated so scrapers do not get a clean address. The
+               button copies the real one to the clipboard. -->
+          <button class="email-btn" type="button" data-copy-email aria-label="Copy email address to clipboard">
+            abrahamjhernandez.dev [at] gmail (dot) com
+          </button>
+        </p>
+      </div>
+    </header>
+
+    <!-- tabindex="-1" so the skip link actually moves keyboard focus here.
+         Without it some browsers scroll but leave focus on the link, and the
+         next Tab drops the visitor back into the header nav. -->
+    <section class="section" id="projects" tabindex="-1" aria-label="Projects">
+      <div class="grid" role="list">
+
+        <article class="card" id="code-visualizer" role="listitem" aria-labelledby="code-visualizer-title">
+          <div class="card__bar">
+            <h2 class="card__title" id="code-visualizer-title">Code Visualizer</h2>
+            <span class="badge" data-status="open-source">open source</span>
+          </div>
+          <div class="card__media">
+            <!-- Silent looping clip, no controls: it reads as a moving
+                 screenshot rather than something you have to press play on.
+                 Same file is used in the repo README.
+                 No autoplay attribute and preload="none" on purpose. main.js
+                 starts each clip when it scrolls into view and pauses it when
+                 it leaves, so a visitor never downloads or decodes four videos
+                 at once. The poster is what shows until then, and it is also
+                 the fallback if JavaScript never runs. -->
+            <video src="img/code-visualizer.mp4"
+                   poster="img/code-visualizer-poster.jpg"
+                   preload="none" muted loop playsinline
+                   aria-label="Screen recording of the visualizer stepping through isPalindrome, showing the two pointers converging"></video>
+          </div>
+          <div class="card__body">
+            <p class="card__lede">Step through real Java execution</p>
+            <p class="card__desc">
+              I hit the limit on LeetCode's built-in debugger in the middle of a
+              practice session, and rather than pay for it I wrote my own.
+              Paste a Java
+              <code>class Solution</code>, give it inputs, and step through the
+              actual run: line highlighting, variable state cards, pointer
+              markers. It launches a second JVM and traces it through the Java
+              Debug Interface, reading real stack frame values rather than
+              simulating execution or instrumenting bytecode. Runaway programs are
+              bounded by a ten second timeout and a two thousand step cap, and
+              the child process is always destroyed on cleanup. No Maven,
+              Gradle, or npm: everything compiles with <code>javac</code>, and
+              13 test files run 324 assertions across the pipeline, including
+              fixtures that deliberately hang, read out of bounds, and return
+              the wrong answer.
+            </p>
+            <ul class="tech" aria-label="Technologies">
+              <li data-tech="java">java</li>
+              <li data-tech="jdi">jdi</li>
+              <li data-tech="javascript">javascript</li>
+              <li data-tech="css">css</li>
+            </ul>
+            <div class="card__links">
+              <a class="btn btn--primary" href="https://github.com/cl0ax/code-visualizer">View Source</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" id="td-landscaping" role="listitem" aria-labelledby="td-landscaping-title">
+          <div class="card__bar">
+            <h2 class="card__title" id="td-landscaping-title">T&amp;D Landscaping</h2>
+            <span class="badge" data-status="client">client work</span>
+          </div>
+          <div class="card__media">
+            <video src="img/td-landscaping.mp4"
+                   poster="img/td-landscaping-poster.jpg"
+                   preload="none" muted loop playsinline
+                   aria-label="Slow scroll through the live T&amp;D Landscaping site, from the hero down through services, work gallery and contact"></video>
+          </div>
+          <div class="card__body">
+            <p class="card__lede">A real client site, live in production</p>
+            <p class="card__desc">
+              A landing page and work gallery built and shipped for a landscaping
+              company in Naperville, Illinois. Hand written HTML, CSS, and
+              JavaScript: no framework, no bundler, no build step. Around
+              690 lines of JavaScript carry a looping photo carousel that pauses
+              for hover, focus, touch, tab visibility and reduced motion, plus a
+              keyboard navigable lightbox with a focus trap, and an estimate form
+              that falls back to a call or email prompt if submission fails. A
+              token layer of CSS custom properties drives the palette and spacing
+              scale, and the layout is mobile first. Deployed on Cloudflare
+              Pages, where <code>main</code> ships to production and every other
+              branch gets a preview URL for the client to approve first.
+            </p>
+            <ul class="tech" aria-label="Technologies">
+              <li data-tech="html">html</li>
+              <li data-tech="css">css</li>
+              <li data-tech="javascript">javascript</li>
+              <li data-tech="cloudflare">cloudflare pages</li>
+            </ul>
+            <div class="card__links">
+              <a class="btn btn--primary" href="https://tdlandscapings.com">Visit Site</a>
+            </div>
+            <p class="card__note">
+              Client work, so the production repository is not linked here. Code
+              walkthrough available on request.
+            </p>
+          </div>
+        </article>
+
+        <article class="card" id="smartprep" role="listitem" aria-labelledby="smartprep-title">
+          <div class="card__bar">
+            <h2 class="card__title" id="smartprep-title">SmartPrep</h2>
+            <span class="badge" data-status="team">team project</span>
+          </div>
+          <div class="card__media">
+            <video src="img/smartprep.mp4"
+                   poster="img/smartprep-poster.jpg"
+                   preload="none" muted loop playsinline
+                   aria-label="Screen recording of SmartPrep: signing up, the proficiency assessment, the dashboard, running a solution against a test case, and the AI interview practice screen"></video>
+          </div>
+          <div class="card__body">
+            <p class="card__lede">Adaptive interview prep platform</p>
+            <p class="card__desc">
+              A coding interview prep platform built by a three person capstone
+              team, React on the front end and Spring Boot behind it. I started
+              the onboarding questionnaire that calibrates a new user, writing
+              the questions and the first pass of the code the team carried
+              forward. I owned the AI feedback subsystem end to end: the chatbot
+              service and its controller, the request and response DTOs, the
+              React page that drives the conversation, and the proficiency
+              adjustment applied after each evaluation. I also worked on the
+              persistence layer, the JPA entity model covering problems,
+              submissions, test cases, categories, difficulty, proficiency, and
+              solution ratings, and my fork adds the schema and seed data that
+              make the project runnable from a clone.
+            </p>
+            <ul class="tech" aria-label="Technologies">
+              <li data-tech="java">java</li>
+              <li data-tech="spring">spring boot</li>
+              <li data-tech="react">react</li>
+              <li data-tech="mysql">mysql</li>
+            </ul>
+            <div class="card__links">
+              <a class="btn btn--primary" href="https://github.com/cl0ax/SmartPrep">View My Fork</a>
+              <a class="btn btn--ghost" href="https://github.com/josephbarron-dev/SmartPrep">Team Repo</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" id="tiktok-scraper" role="listitem" aria-labelledby="tiktok-scraper-title">
+          <div class="card__bar">
+            <h2 class="card__title" id="tiktok-scraper-title">TikTok Trending Scraper</h2>
+            <span class="badge" data-status="open-source">source available</span>
+          </div>
+          <div class="card__media">
+            <video src="img/tiktok-scraper.mp4"
+                   poster="img/tiktok-scraper-poster.jpg"
+                   preload="none" muted loop playsinline
+                   aria-label="Terminal recording: the scraper compiling, ChromeDriver matching the installed Chrome, and Selenium launching a browser session"></video>
+          </div>
+          <div class="card__body">
+            <p class="card__lede">Browser driven scraper for trending listings</p>
+            <p class="card__desc">
+              A Java scraper that drives headless Chrome through Selenium to
+              reach listings that only exist after the page renders, then makes a
+              second pass with jsoup to pull Open Graph duration metadata for
+              each link, selecting a batch under a duration budget. Recently
+              revived: the pinned ChromeDriver had drifted 37 major versions
+              behind the installed browser, and the target route now redirects to
+              a login gated feed. The driver is current again and the scraper
+              now targets <code>/explore</code>. An end to end run is still
+              stopped by TikTok's bot detection, which the README states plainly
+              rather than leaving implied.
+            </p>
+            <ul class="tech" aria-label="Technologies">
+              <li data-tech="java">java</li>
+              <li data-tech="selenium">selenium</li>
+              <li data-tech="jsoup">jsoup</li>
+            </ul>
+            <div class="card__links">
+              <a class="btn btn--primary" href="https://github.com/cl0ax/TikTok-Trending-Scraper">View Source</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <p class="site-footer__inner">
+      <a href="https://github.com/cl0ax">github: @cl0ax</a>
+      <span class="sep" aria-hidden="true">·</span>
+      <button class="email-btn" type="button" data-copy-email aria-label="Copy email address to clipboard">
+        email: abrahamjhernandez.dev [at] gmail (dot) com
+      </button>
+      <span class="sep" aria-hidden="true">·</span>
+      <button class="link-btn" type="button" data-back-to-top>Back to top</button>
+    </p>
+  </footer>
+
+  <!-- role="status" so a screen reader announces the copy instead of the
+       confirmation being visual only. -->
+  <div class="toast" data-toast role="status" aria-live="polite" hidden>Copied to clipboard</div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

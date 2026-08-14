@@ -1,0 +1,13 @@
+.DS_Store
+
+# This repository is public and is the portfolio a recruiter sees. Only the
+# product ships: the page, its styles, its script, its media. Everything below
+# is internal working material and its canonical home is the vault, at
+# Projects/Portfolio/build-notes/.
+#
+# Set at the start rather than after the fact, because getting something back
+# out of published history means rewriting it and never fully erases it.
+CONTEXT.md
+TASK-01-analyze-reference.md
+reference-analysis.md
+notes/

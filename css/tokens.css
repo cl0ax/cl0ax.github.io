@@ -1,0 +1,65 @@
+/* Design tokens. Every color, space, and font choice on the site resolves to
+   one of these. Change a value here and it changes everywhere. */
+
+:root {
+  /* Surfaces, darkest to lightest */
+  --color-bg: #0f1216;
+  --color-surface: #151a20;
+  --color-surface-raised: #1b212a;
+  --color-border: #2a323d;
+  --color-border-soft: #212832;
+
+  /* Text */
+  --color-ink: #e8ecf2;
+  --color-ink-muted: #a4aebc;
+  /* Lightened from #6f7987, which measured 4.26:1 on the page background and
+     failed the WCAG AA minimum of 4.5:1 for normal sized text. */
+  --color-ink-faint: #8b95a3;
+
+  /* Accent. Carried over from the T&D palette so both sites read as mine. */
+  --color-accent: #f09e3e;
+  --color-accent-600: #d98732;
+  --color-accent-dim: rgb(240 158 62 / 0.14);
+
+  /* Status colors for the project badges */
+  --color-open: #63c98a;
+  --color-open-dim: rgb(99 201 138 / 0.12);
+  --color-client: #f09e3e;
+  --color-client-dim: rgb(240 158 62 / 0.12);
+  --color-team: #7aa2f7;
+  --color-team-dim: rgb(122 162 247 / 0.12);
+  --color-closed: #c9a86a;
+  --color-closed-dim: rgb(201 168 106 / 0.12);
+  --color-course: #a48ad4;
+  --color-course-dim: rgb(164 138 212 / 0.12);
+
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+
+  --radius-sm: 0.25rem;
+  --radius-pill: 999px;
+
+  /* Shape of the demo clip box on a card. The clips are all about 1.6:1, so
+     anything wider than that crops them. This is a ratio rather than a fixed
+     height so the box scales with the card instead of cropping harder every
+     time the viewport grows. Tune here, it applies at every breakpoint. */
+  --card-media-aspect-ratio: 2.2;
+
+  --shadow-card: 0 10px 30px rgb(0 0 0 / 0.35);
+  --shadow-card-hover: 0 14px 38px rgb(0 0 0 / 0.5);
+
+  --container: 78rem;
+  --header-height: 3.5rem;
+}
