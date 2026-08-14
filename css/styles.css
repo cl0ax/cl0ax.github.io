@@ -188,6 +188,28 @@ code {
   outline: none;
 }
 
+/* This controls ambient motion rather than navigating anywhere, so it stays
+   quieter than the project actions while remaining visibly interactive. */
+.demo-toggle {
+  display: block;
+  margin: 0 0 var(--space-4) auto;
+  padding: var(--space-1) var(--space-3);
+  color: var(--color-ink-muted);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font: inherit;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.demo-toggle:hover,
+.demo-toggle[aria-pressed="true"] {
+  color: var(--color-ink);
+  background: var(--color-surface-raised);
+}
+
 .grid {
   display: grid;
   grid-template-columns: 1fr;

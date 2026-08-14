@@ -56,6 +56,7 @@
          Without it some browsers scroll but leave focus on the link, and the
          next Tab drops the visitor back into the header nav. -->
     <section class="section" id="projects" tabindex="-1" aria-label="Projects">
+      <button class="demo-toggle" type="button" data-demo-toggle aria-pressed="false">Pause demos</button>
       <div class="grid" role="list">
 
         <article class="card" id="code-visualizer" role="listitem" aria-labelledby="code-visualizer-title">
@@ -123,8 +124,8 @@
             <p class="card__desc">
               A landing page and work gallery built and shipped for a landscaping
               company in Naperville, Illinois. Hand written HTML, CSS, and
-              JavaScript: no framework, no bundler, no build step. Around
-              690 lines of JavaScript carry a looping photo carousel that pauses
+              JavaScript: no framework, no bundler, no build step. Over a
+              thousand lines of JavaScript carry a looping photo carousel that pauses
               for hover, focus, touch, tab visibility and reduced motion, plus a
               keyboard navigable lightbox with a focus trap, and an estimate form
               that falls back to a call or email prompt if submission fails. A
@@ -198,26 +199,31 @@
             <video src="img/tiktok-scraper.mp4"
                    poster="img/tiktok-scraper-poster.jpg"
                    preload="none" muted loop playsinline
-                   aria-label="Terminal recording: the scraper compiling, ChromeDriver matching the installed Chrome, and Selenium launching a browser session"></video>
+                   aria-label="Terminal recording of a real run: the scraper discovering trending links, reading durations, selecting a batch, downloading four files, and ffprobe confirming they are H.264 video"></video>
           </div>
           <div class="card__body">
-            <p class="card__lede">Browser driven scraper for trending listings</p>
+            <p class="card__lede">Sourcing footage for a Shorts channel</p>
             <p class="card__desc">
-              A Java scraper that drives headless Chrome through Selenium to
-              reach listings that only exist after the page renders, then makes a
-              second pass with jsoup to pull Open Graph duration metadata for
-              each link, selecting a batch under a duration budget. Recently
-              revived: the pinned ChromeDriver had drifted 37 major versions
-              behind the installed browser, and the target route now redirects to
-              a login gated feed. The driver is current again and the scraper
-              now targets <code>/explore</code>. An end to end run is still
-              stopped by TikTok's bot detection, which the README states plainly
-              rather than leaving implied.
+              I run a YouTube Shorts channel that cuts clips from several sources
+              into one edited short, and gathering that footage by hand was the
+              slow part. This finds what is trending now, picks a set that adds
+              up to the runtime I need, and downloads the files ready to edit.
+              TikTok ships an empty shell and fills the listings in with
+              JavaScript, so a plain fetch of <code>/explore</code> returns zero
+              video links: the tool drives a real browser through Selenium
+              instead, then reads each video's duration and signed media URL out
+              of the page's hydration JSON. The batch solver targets 40 to 60
+              seconds because that is the range my own channel analytics showed
+              performing best. The download only works by reusing the live
+              browser session's cookies, since the same request without them
+              comes back 403, and that was the bug that used to write HTML to
+              disk with an <code>.mp4</code> extension.
             </p>
             <ul class="tech" aria-label="Technologies">
               <li data-tech="java">java</li>
               <li data-tech="selenium">selenium</li>
               <li data-tech="jsoup">jsoup</li>
+              <li data-tech="junit">junit</li>
             </ul>
             <div class="card__links">
               <a class="btn btn--primary" href="https://github.com/cl0ax/TikTok-Trending-Scraper">View Source</a>

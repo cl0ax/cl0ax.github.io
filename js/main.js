@@ -106,13 +106,19 @@ narrow.addEventListener('change', syncCardWatching);
    the visitor changes the setting while the page is open. */
 
 const clips = document.querySelectorAll('.card__media video');
+const demoToggle = document.querySelector('[data-demo-toggle]');
 const visibleClips = new Set();
+let demosPaused = false;
 
 function syncClipPlayback(clip) {
-  if (visibleClips.has(clip) && !prefersReducedMotion.matches) {
-    // play() rejects if the browser blocks it, which is not an error worth
-    // surfacing on a decorative clip.
-    clip.play().catch(() => {});
+  // Once reduced motion exposes native controls, scrolling must not override
+  // the visitor's deliberate choice to play or pause a clip.
+  if (prefersReducedMotion.matches) return;
+
+  if (visibleClips.has(clip) && !demosPaused) {
+    // Some browsers can refuse even muted playback. Native controls keep that
+    // clip usable instead of leaving the visitor with only its poster.
+    clip.play().catch(() => { clip.controls = true; });
   } else {
     clip.pause();
   }
@@ -129,7 +135,26 @@ const clipObserver = new IntersectionObserver((entries) => {
   });
 }, { threshold: [0, 0.25, 1] });
 
-clips.forEach((clip) => clipObserver.observe(clip));
+clips.forEach((clip) => {
+  clipObserver.observe(clip);
+  // The shared pause is a persistent stop, including when reduced motion has
+  // exposed controls that could otherwise start an individual clip.
+  clip.addEventListener('play', () => {
+    if (demosPaused) clip.pause();
+  });
+});
+
+demoToggle?.addEventListener('click', () => {
+  demosPaused = !demosPaused;
+  demoToggle.setAttribute('aria-pressed', String(demosPaused));
+  demoToggle.textContent = demosPaused ? 'Resume demos' : 'Pause demos';
+
+  if (demosPaused) {
+    clips.forEach((clip) => clip.pause());
+  } else {
+    clips.forEach(syncClipPlayback);
+  }
+});
 
 function applyMotionPreference() {
   const reduce = prefersReducedMotion.matches;
